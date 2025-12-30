@@ -43,7 +43,7 @@ then
     echo -e "$Y mysql is already installed...Nothing to do $N"
 else
     echo -e "$R mysql is not installed..going to installing $N"
-    dnf install mysql -y &>> &Logs_file
+    dnf install mysql -y &>> $Logs_file
     VALIDATE $? "mysql"
 fi
 
