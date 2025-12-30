@@ -13,6 +13,8 @@ Logs_file="$Logs_Folder/$Script_Name.log"
 
 mkdir -p $Logs_Folder
 
+PACKAGES=("mysql" "nginx" "python3" "httpd")
+
 UserId=$(id -u)
 
 if [ $UserId -eq 0 ]
@@ -36,37 +38,17 @@ VALIDATE(){
     fi
 
 }
-
-dnf list installed mysql &>> $Logs_file
+for package in ${PACKAGES[@]}
+do
+   dnf list installed $package &>> $Logs_file
 if [ $? -eq 0 ]
 then
-    echo -e "$Y mysql is already installed...Nothing to do $N"
+    echo -e "$Y $package is already installed...Nothing to do $N"
 else
-    echo -e "$R mysql is not installed..going to installing $N"
-    dnf install mysql -y &>> $Logs_file
-    VALIDATE $? "mysql"
+    echo -e "$R $package is not installed..going to installing $N"
+    dnf install $package -y &>> $Logs_file
+    VALIDATE $? "$package"
 fi
 
-dnf list installed nginx &>> $Logs_file
 
-if [ $? -eq 0 ]
-then 
-   echo -e "$Y nginx is already installed..Nothing to do $N"
-else
-   echo -e "$R nginx is not installed..going to installing $N"
-   dnf install nginx -y &>> $Logs_file
-   VALIDATE $? "nginx"
-   
-fi
-dnf list installed python3 &>> $Logs_file
-
-if [ $? -eq 0 ]
-then 
-   echo -e "$Y python3 is already installed..Nothing to do $N"
-else
-   echo -e "$R python3 is not installed..going ti installing $N"
-   dnf install python3 -y &>> $Logs_file
-   VALIDATE $? "python3"
-  
-fi
-    
+done
