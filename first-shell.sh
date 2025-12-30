@@ -51,22 +51,22 @@ dnf list installed nginx &>> $Logs_file
 
 if [ $? -eq 0 ]
 then 
-   echo "$Y nginx is already installed..Nothing to do $N"
+   echo -e "$Y nginx is already installed..Nothing to do $N"
 else
-   echo "$R nginx is not installed..going to installing $N"
+   echo -e "$R nginx is not installed..going to installing $N"
    dnf install nginx -y &>> $Logs_file
    VALIDATE $? "nginx"
-   exit 1
+   
 fi
 dnf list installed python3 &>> $Logs_file
 
 if [ $? -eq 0 ]
 then 
-   echo "$Y python3 is already installed..Nothing to do $N"
+   echo -e "$Y python3 is already installed..Nothing to do $N"
 else
-   echo "$R python3 is not installed..going ti installing $N"
+   echo -e "$R python3 is not installed..going ti installing $N"
    dnf install python3 -y &>> $Logs_file
    VALIDATE $? "python3"
-   exit 1
+  
 fi
     
