@@ -17,7 +17,7 @@ N="\e[0m"
 
 VALIDATE(){
     
-    if[ $1 -eq 0 ]
+    if [ $1 -eq 0 ]
     then
        echo "$G $2 installation...success $N"
     else
