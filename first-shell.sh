@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
 UserId=$(id -u)
 
 if [ $UserId -eq 0 ]
@@ -10,10 +17,7 @@ else
     exit 1
 fi
 
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
+
 
 VALIDATE(){
     
